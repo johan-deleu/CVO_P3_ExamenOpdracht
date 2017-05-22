@@ -1,0 +1,10 @@
+E:\Opdracht_Examen\Opdracht_Examen\Bibliotheek.DataModel\bin\Debug\Bibliotheek.DataModel.dll
+E:\Opdracht_Examen\Opdracht_Examen\Bibliotheek.DataModel\bin\Debug\Bibliotheek.DataModel.pdb
+E:\Opdracht_Examen\Opdracht_Examen\Bibliotheek.DataModel\obj\Debug\Bibliotheek.DataModel.csprojResolveAssemblyReference.cache
+E:\Opdracht_Examen\Opdracht_Examen\Bibliotheek.DataModel\obj\Debug\Bibliotheek.DataModel.dll
+E:\Opdracht_Examen\Opdracht_Examen\Bibliotheek.DataModel\obj\Debug\Bibliotheek.DataModel.pdb
+C:\Users\Johan\Documents\CVO\Programmeren_3\Opdracht_Examen\Opdracht_Examen\Bibliotheek.DataModel\bin\Debug\Bibliotheek.DataModel.dll
+C:\Users\Johan\Documents\CVO\Programmeren_3\Opdracht_Examen\Opdracht_Examen\Bibliotheek.DataModel\bin\Debug\Bibliotheek.DataModel.pdb
+C:\Users\Johan\Documents\CVO\Programmeren_3\Opdracht_Examen\Opdracht_Examen\Bibliotheek.DataModel\obj\Debug\Bibliotheek.DataModel.csprojResolveAssemblyReference.cache
+C:\Users\Johan\Documents\CVO\Programmeren_3\Opdracht_Examen\Opdracht_Examen\Bibliotheek.DataModel\obj\Debug\Bibliotheek.DataModel.dll
+C:\Users\Johan\Documents\CVO\Programmeren_3\Opdracht_Examen\Opdracht_Examen\Bibliotheek.DataModel\obj\Debug\Bibliotheek.DataModel.pdb

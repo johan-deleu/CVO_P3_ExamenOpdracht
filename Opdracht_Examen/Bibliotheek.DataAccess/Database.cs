@@ -10,10 +10,9 @@ namespace Bibliotheek.DataAccess
 {
     public class Database : DbContext
     {
-        public static readonly string connectionString = "Server=tcp:my.djohnnie.be; Database=Opdracht2_Johan; User ID =Programmeren13822@programmeren3; Password = Programmeren3;" +
-           " Trusted_Connection = False;";
+        //public static readonly string connectionString = "Removed for Github usage";
 
-        //private static readonly string connectionString = "Server=tcp:ACERSERVER2016; Database=Opdracht1; User ID =Programmeren3; Password =!SQLServer2016auth!;";
+        private static readonly string connectionString = "Server=tcp:ACERSERVER2016; Database=Opdracht3; User ID =Programmeren3; Password =!SQLServer2016auth!;";
 
         public DbSet<Boek> Boeken { get; set; }
         public DbSet<Genre> Genres { get; set; }

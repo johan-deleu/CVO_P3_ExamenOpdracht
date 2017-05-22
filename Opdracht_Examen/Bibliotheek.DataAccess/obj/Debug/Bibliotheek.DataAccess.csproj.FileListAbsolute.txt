@@ -22,3 +22,15 @@ C:\Users\Johan\Documents\CVO\Programmeren_3\Opdracht_Examen\Opdracht_Examen\Bibl
 C:\Users\Johan\Documents\CVO\Programmeren_3\Opdracht_Examen\Opdracht_Examen\Bibliotheek.DataAccess\bin\Debug\Bibliotheek.DataModel.pdb
 C:\Users\Johan\Documents\CVO\Programmeren_3\Opdracht_Examen\Opdracht_Examen\Bibliotheek.DataAccess\bin\Debug\EntityFramework.xml
 C:\Users\Johan\Documents\CVO\Programmeren_3\Opdracht_Examen\Opdracht_Examen\Bibliotheek.DataAccess\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Johan\Documents\GitHub\CVO_P3_ExamenOpdracht\Opdracht_Examen\Bibliotheek.DataAccess\bin\Debug\Bibliotheek.DataAccess.dll.config
+C:\Users\Johan\Documents\GitHub\CVO_P3_ExamenOpdracht\Opdracht_Examen\Bibliotheek.DataAccess\bin\Debug\Bibliotheek.DataAccess.dll
+C:\Users\Johan\Documents\GitHub\CVO_P3_ExamenOpdracht\Opdracht_Examen\Bibliotheek.DataAccess\bin\Debug\Bibliotheek.DataAccess.pdb
+C:\Users\Johan\Documents\GitHub\CVO_P3_ExamenOpdracht\Opdracht_Examen\Bibliotheek.DataAccess\bin\Debug\Bibliotheek.DataModel.dll
+C:\Users\Johan\Documents\GitHub\CVO_P3_ExamenOpdracht\Opdracht_Examen\Bibliotheek.DataAccess\bin\Debug\EntityFramework.dll
+C:\Users\Johan\Documents\GitHub\CVO_P3_ExamenOpdracht\Opdracht_Examen\Bibliotheek.DataAccess\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Johan\Documents\GitHub\CVO_P3_ExamenOpdracht\Opdracht_Examen\Bibliotheek.DataAccess\bin\Debug\Bibliotheek.DataModel.pdb
+C:\Users\Johan\Documents\GitHub\CVO_P3_ExamenOpdracht\Opdracht_Examen\Bibliotheek.DataAccess\bin\Debug\EntityFramework.xml
+C:\Users\Johan\Documents\GitHub\CVO_P3_ExamenOpdracht\Opdracht_Examen\Bibliotheek.DataAccess\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Johan\Documents\GitHub\CVO_P3_ExamenOpdracht\Opdracht_Examen\Bibliotheek.DataAccess\obj\Debug\Bibliotheek.DataAccess.csprojResolveAssemblyReference.cache
+C:\Users\Johan\Documents\GitHub\CVO_P3_ExamenOpdracht\Opdracht_Examen\Bibliotheek.DataAccess\obj\Debug\Bibliotheek.DataAccess.dll
+C:\Users\Johan\Documents\GitHub\CVO_P3_ExamenOpdracht\Opdracht_Examen\Bibliotheek.DataAccess\obj\Debug\Bibliotheek.DataAccess.pdb

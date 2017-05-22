@@ -26,3 +26,17 @@ C:\Users\Johan\Documents\CVO\Programmeren_3\Opdracht_Examen\Opdracht_Examen\Bibl
 C:\Users\Johan\Documents\CVO\Programmeren_3\Opdracht_Examen\Opdracht_Examen\Bibliotheek.BusinessLogic\obj\Debug\Bibliotheek.BusinessLogic.csprojResolveAssemblyReference.cache
 C:\Users\Johan\Documents\CVO\Programmeren_3\Opdracht_Examen\Opdracht_Examen\Bibliotheek.BusinessLogic\obj\Debug\Bibliotheek.BusinessLogic.dll
 C:\Users\Johan\Documents\CVO\Programmeren_3\Opdracht_Examen\Opdracht_Examen\Bibliotheek.BusinessLogic\obj\Debug\Bibliotheek.BusinessLogic.pdb
+C:\Users\Johan\Documents\GitHub\CVO_P3_ExamenOpdracht\Opdracht_Examen\Bibliotheek.BusinessLogic\bin\Debug\Bibliotheek.BusinessLogic.dll.config
+C:\Users\Johan\Documents\GitHub\CVO_P3_ExamenOpdracht\Opdracht_Examen\Bibliotheek.BusinessLogic\bin\Debug\Bibliotheek.BusinessLogic.dll
+C:\Users\Johan\Documents\GitHub\CVO_P3_ExamenOpdracht\Opdracht_Examen\Bibliotheek.BusinessLogic\bin\Debug\Bibliotheek.BusinessLogic.pdb
+C:\Users\Johan\Documents\GitHub\CVO_P3_ExamenOpdracht\Opdracht_Examen\Bibliotheek.BusinessLogic\bin\Debug\Bibliotheek.DataAccess.dll
+C:\Users\Johan\Documents\GitHub\CVO_P3_ExamenOpdracht\Opdracht_Examen\Bibliotheek.BusinessLogic\bin\Debug\Bibliotheek.DataModel.dll
+C:\Users\Johan\Documents\GitHub\CVO_P3_ExamenOpdracht\Opdracht_Examen\Bibliotheek.BusinessLogic\bin\Debug\EntityFramework.dll
+C:\Users\Johan\Documents\GitHub\CVO_P3_ExamenOpdracht\Opdracht_Examen\Bibliotheek.BusinessLogic\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Johan\Documents\GitHub\CVO_P3_ExamenOpdracht\Opdracht_Examen\Bibliotheek.BusinessLogic\bin\Debug\Bibliotheek.DataAccess.pdb
+C:\Users\Johan\Documents\GitHub\CVO_P3_ExamenOpdracht\Opdracht_Examen\Bibliotheek.BusinessLogic\bin\Debug\Bibliotheek.DataModel.pdb
+C:\Users\Johan\Documents\GitHub\CVO_P3_ExamenOpdracht\Opdracht_Examen\Bibliotheek.BusinessLogic\bin\Debug\EntityFramework.xml
+C:\Users\Johan\Documents\GitHub\CVO_P3_ExamenOpdracht\Opdracht_Examen\Bibliotheek.BusinessLogic\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Johan\Documents\GitHub\CVO_P3_ExamenOpdracht\Opdracht_Examen\Bibliotheek.BusinessLogic\obj\Debug\Bibliotheek.BusinessLogic.csprojResolveAssemblyReference.cache
+C:\Users\Johan\Documents\GitHub\CVO_P3_ExamenOpdracht\Opdracht_Examen\Bibliotheek.BusinessLogic\obj\Debug\Bibliotheek.BusinessLogic.dll
+C:\Users\Johan\Documents\GitHub\CVO_P3_ExamenOpdracht\Opdracht_Examen\Bibliotheek.BusinessLogic\obj\Debug\Bibliotheek.BusinessLogic.pdb

@@ -14,8 +14,7 @@ namespace Bibliotheek.Service
     public class GenreService:IGenreService
     {
         private readonly GenreLogica _genreLogica;
-
-        
+   
         //Deze standaard constructor is nodig om de WCF test client te kunnen opstarten
         public GenreService()
         {
@@ -25,30 +24,39 @@ namespace Bibliotheek.Service
         {
             _genreLogica = genreLogica;
         }
-        //public Task<List<Genre>> OphalenGenres()
-        public Task<Genre[]> OphalenGenres()
+        public async Task<List<Genre>> OphalenGenresAsync()
         {
-            return _genreLogica.OphalenGenres();
+            return await _genreLogica.OphalenGenresAsync();
+        }
+        
+        public Task<Genre> OphalenGenreAsync(Genre genre)
+        {
+            return _genreLogica.OphalenGenreAsync(genre);
         }
 
-        public Task<Genre> OphalenGenre_async(Int32 code)
+        public Task<Int32?> WijzigenGenreAsync(Genre bestaandGenre, Genre bijgewerktGenre)
         {
-            return _genreLogica.OphalenGenre_async(code);
+            return _genreLogica.WijzigenGenreAsync(bestaandGenre, bijgewerktGenre);
         }
 
-        public Task WijzigenGenre_async(Genre genre)
+        //public async Task<Int32?> VerwijderenGenreAsync(Int32 code)
+        //{
+        //    return await _genreLogica.VerwijderenGenreAsync(code);
+        //}
+
+        public async Task<Int32?> VerwijderenGenreAsync(Genre genre)
         {
-            return _genreLogica.WijzigenGenre_async(genre);
+            return await _genreLogica.VerwijderenGenreAsync(genre);
         }
 
-        public  Task VerwijderenGenre(Int32 code)
-        {    
-            return _genreLogica.VerwijderenGenre(code);
+        public async Task<List<Genre>> VerwijderenGenreLijstAsync(List<Genre> genreLijst)
+        {
+            return await _genreLogica.VerwijderenGenreLijstAsync(genreLijst);
         }
 
-        public Task ToevoegenGenre(Genre genre)
+        public async Task<Int32?> ToevoegenGenreAsync(Genre genre)
         {
-            return _genreLogica.ToevoegenGenre(genre);
+            return await _genreLogica.ToevoegenGenreAsync(genre);
         }
     }
 }

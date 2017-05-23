@@ -30,6 +30,22 @@ namespace Bibliotheek.DataAccess
         {
             return await Boeken.ToListAsync();
         }
+ 
+        public async Task<List<Boek>> OphalenBoekenMetGenre_async()
+        {
+            return await Boeken.Include(x => x.Genres).ToListAsync();
+        }
+
+        public async Task<Boek> OphalenBoekMetGenre_async(Boek boek)
+        {
+            var opgehaaldBoek= await Boeken.Include(x => x.Genres).SingleOrDefaultAsync(x => x.Code == boek.Code);
+            //oneindig recursief onderbreken boeken van onderliggende genres op null te zetten.
+            foreach (Genre genre in opgehaaldBoek.Genres)
+            {
+                genre.Boeken = null;
+            }
+            return opgehaaldBoek;
+        }
 
         public async Task<List<Boek>> OphalenBoeken_async(Genre genre)
         {
@@ -38,7 +54,7 @@ namespace Bibliotheek.DataAccess
 
             //Haal de lijst met boeken van één specifiek genre op uit de database, NULL indien er geen boeken van dat genre zijn
             List<Boek> genreBoekenLijst = new List<Boek>();
-            List<Boek> boekenLijst = await OphalenBoeken_async();
+            List<Boek> boekenLijst = await OphalenBoekenMetGenre_async();
 
             foreach (var boek in boekenLijst)
             {
@@ -69,23 +85,23 @@ namespace Bibliotheek.DataAccess
             return (toegevoegdBoek.Code);
         }
 
-        public async Task VerwijderenBoek_async(Int32 code)
+        public async Task<Int32?> VerwijderenBoek_async(Boek boek)
         {
             //Verwijder één specifiek boek uit de database
-            var teVerwijderenBoek = await Boeken.SingleOrDefaultAsync(x => x.Code == code);
+            var teVerwijderenBoek = await Boeken.SingleOrDefaultAsync(x => x.Code == boek.Code);
             if (teVerwijderenBoek != null)
             {
                 Boeken.Remove(teVerwijderenBoek);
             }
             await SaveChangesAsync();
-            return;
+            return teVerwijderenBoek.Code;
         }
 
-        public async Task ToevoegenGenre_async(Genre genre)
+        public async Task<Int32?> ToevoegenGenre_async(Genre genre)
         {
             Genres.Add(genre);
             await SaveChangesAsync();
-            return;
+            return genre.Code;
         }
 
         public async Task VerwijderenGenre_async(Int32 code)
@@ -97,12 +113,12 @@ namespace Bibliotheek.DataAccess
             return;
         }
 
-        public async Task BijwerkenGenre_async(Genre genre)
+        public async Task<Int32?> WijzigenGenre_async(Genre bestaandGenre, Genre bijgewerktGenre)
         {
-            var teWijzigenGenre = Genres.SingleOrDefault(x => x.Code == genre.Code);
-            teWijzigenGenre.Omschrijving = genre.Omschrijving;
+            var teWijzigenGenre = Genres.SingleOrDefault(x => x.Code == bestaandGenre.Code);
+            teWijzigenGenre.Omschrijving = bijgewerktGenre.Omschrijving;
             await SaveChangesAsync();
-            return;
+            return teWijzigenGenre.Code;
         }
     }
 }

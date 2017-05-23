@@ -46,3 +46,5 @@ C:\Users\Johan\Documents\GitHub\CVO_P3_ExamenOpdracht\Opdracht_Examen\Bibliothee
 C:\Users\Johan\Documents\GitHub\CVO_P3_ExamenOpdracht\Opdracht_Examen\Bibliotheek.Client\obj\Debug\Bibliotheek.Client.g.resources
 C:\Users\Johan\Documents\GitHub\CVO_P3_ExamenOpdracht\Opdracht_Examen\Bibliotheek.Client\obj\Debug\Bibliotheek.Client.Properties.Resources.resources
 C:\Users\Johan\Documents\GitHub\CVO_P3_ExamenOpdracht\Opdracht_Examen\Bibliotheek.Client\obj\Debug\Bibliotheek.Client.csproj.GenerateResource.Cache
+C:\Users\Johan\Documents\GitHub\CVO_P3_ExamenOpdracht\Opdracht_Examen\Bibliotheek.Client\obj\Debug\GenreWindow.g.cs
+C:\Users\Johan\Documents\GitHub\CVO_P3_ExamenOpdracht\Opdracht_Examen\Bibliotheek.Client\obj\Debug\GenreWindow.baml

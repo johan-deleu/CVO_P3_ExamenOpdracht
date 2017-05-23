@@ -14,17 +14,21 @@ namespace Bibliotheek.Service
     public interface IBoekService
     {
         [OperationContract]
-        //Task<List<Boek>> OphalenBoekenAsync();
-        Task<Boek[]> OphalenBoekenAsync();
-
+        Task<List<Boek>> OphalenBoekenAsync();
+        
         [OperationContract]
         Task<Boek> OphalenBoek(Int32 code);
 
         [OperationContract]
-        Task VerwijderenBoek(Int32 code);
+        Task<Boek> OphalenBoekMetGenreAsync(Boek boek);
 
         [OperationContract]
-        Task<Int32> ToevoegenBoek(Boek nieuwBoek);
-        
+        Task<Int32?> VerwijderenBoekAsync(Boek boek);
+
+        [OperationContract]
+        Task<Int32> ToevoegenBoekAsync(Boek nieuwBoek);
+
+        [OperationContract]
+        Task<Int32> BewerkenBoekAsync(Boek teBewerkenBoek, Boek bewerktBoek);
     }
 }

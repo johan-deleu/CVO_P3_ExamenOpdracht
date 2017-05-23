@@ -21,13 +21,23 @@ namespace Bibliotheek.BusinessLogic
             return await dbAccess.OphalenBoek_async(code);
         }
 
-        public async Task VerwijderenBoek(Int32 code)
+        public async Task<Boek> OphalenBoekMetGenreAsync(Boek boek)
         {
-            await dbAccess.VerwijderenBoek_async(code);
-            return;
+            return await dbAccess.OphalenBoekMetGenre_async(boek);
         }
 
-        public async Task<Int32> ToevoegenBoek(Boek nieuwBoek)
+        public async Task<List<Boek>> OphalenBoekenAsync(Genre genre)
+        {
+            return await dbAccess.OphalenBoeken_async(genre);
+        }
+
+        public async Task<Int32?> VerwijderenBoekAsync(Boek boek)
+        {
+            return await dbAccess.VerwijderenBoek_async(boek);
+
+        }
+
+        public async Task<Int32> ToevoegenBoekAsync(Boek nieuwBoek)
         {
             //Genres moeten eerst uit de database opgehaald worden om correct aan het nieuwe boek gelinkt te worden
             //Indien 'nieuwBoek' rechtstreeks wordt toegevoegd duikt een exeption op 
@@ -45,6 +55,12 @@ namespace Bibliotheek.BusinessLogic
             }
             toeTeVoegenBoek.Genres = genreLijst;
             return await dbAccess.ToevoegenBoek_async(toeTeVoegenBoek);
+        }
+
+        public async Task<Int32> BewerkenBoekAsync(Boek teBewerkenBoek, Boek bewerktBoek)
+        {
+            await VerwijderenBoekAsync(teBewerkenBoek);
+            return await ToevoegenBoekAsync(bewerktBoek);
         }
     }
 }

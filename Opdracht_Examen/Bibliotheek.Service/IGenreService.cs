@@ -14,21 +14,30 @@ namespace Bibliotheek.Service
     [ServiceContract]
     public interface IGenreService
     {
-        
-        [OperationContract]
-        //Task<List<Genre>> OphalenGenres();
-        Task<Genre[]> OphalenGenres();
 
         [OperationContract]
-        Task<Genre> OphalenGenre_async(Int32 code);
+        Task<List<Genre>> OphalenGenresAsync();
+
+        //[OperationContract]
+        //Task<Genre[]> OphalenGenres();
 
         [OperationContract]
-        Task WijzigenGenre_async(Genre genre);
+        Task<Genre> OphalenGenreAsync(Genre genre);
 
         [OperationContract]
-        Task VerwijderenGenre(Int32 code);
+        Task<Int32?> WijzigenGenreAsync(Genre bestaandGenre, Genre bijgewerktGenre);
 
-        Task ToevoegenGenre(Genre genre);
+        //[OperationContract]
+        //Task<Int32?> VerwijderenGenreAsync(Int32 code);
+
+        [OperationContract]
+        Task<Int32?> VerwijderenGenreAsync(Genre genre);
+
+        [OperationContract]
+        Task<List<Genre>> VerwijderenGenreLijstAsync(List<Genre> genreLijst);
+
+        [OperationContract]
+        Task<Int32?> ToevoegenGenreAsync(Genre genre);
         
     }
 }

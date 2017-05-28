@@ -44,8 +44,8 @@
             <Button Grid.Row="5" Grid.Column="3" Margin="10,5,10,5" x:Name="btnGenreVerwijderen" Content="Genre verwijderen" Click="btnGenreVerwijderen_Click" />
             <GroupBox Grid.Row="4" Grid.Column="0" Grid.RowSpan="3" Margin="10,5,5,5" x:Name="grpTechnology" Header="Technologie">
                 <Grid>
-                    <RadioButton Margin="0,10,10,5" x:Name="rbtnWCF" Content="WCF" GroupName="ServiceTechnology" Checked="rbtnService_Checked"/>
-                    <RadioButton Margin="0,40,10,5" x:Name="rbtnWebAPI"  Content="Web API"  IsChecked="True" GroupName="ServiceTechnology" Checked="rbtnService_Checked" HorizontalAlignment="Right" Width="113"/>
+                    <RadioButton Margin="0,10,10,5" x:Name="rbtnWCF" Content="WCF" IsChecked="True" GroupName="ServiceTechnology" Checked="rbtnService_Checked"/>
+                    <RadioButton Margin="0,40,10,5" x:Name="rbtnWebAPI"  Content="Web API" GroupName="ServiceTechnology" Checked="rbtnService_Checked" HorizontalAlignment="Right" Width="113"/>
                 </Grid>
             </GroupBox>
         </Grid>

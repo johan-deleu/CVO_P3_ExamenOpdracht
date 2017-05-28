@@ -10,5 +10,6 @@ C:\Users\Johan\Documents\CVO\Programmeren_3\Opdracht_Examen\Opdracht_Examen\Bibl
 C:\Users\Johan\Documents\CVO\Programmeren_3\Opdracht_Examen\Opdracht_Examen\Bibliotheek.DataModel\obj\Debug\Bibliotheek.DataModel.pdb
 C:\Users\Johan\Documents\GitHub\CVO_P3_ExamenOpdracht\Opdracht_Examen\Bibliotheek.DataModel\bin\Debug\Bibliotheek.DataModel.dll
 C:\Users\Johan\Documents\GitHub\CVO_P3_ExamenOpdracht\Opdracht_Examen\Bibliotheek.DataModel\bin\Debug\Bibliotheek.DataModel.pdb
+C:\Users\Johan\Documents\GitHub\CVO_P3_ExamenOpdracht\Opdracht_Examen\Bibliotheek.DataModel\obj\Debug\Bibliotheek.DataModel.csprojResolveAssemblyReference.cache
 C:\Users\Johan\Documents\GitHub\CVO_P3_ExamenOpdracht\Opdracht_Examen\Bibliotheek.DataModel\obj\Debug\Bibliotheek.DataModel.dll
 C:\Users\Johan\Documents\GitHub\CVO_P3_ExamenOpdracht\Opdracht_Examen\Bibliotheek.DataModel\obj\Debug\Bibliotheek.DataModel.pdb

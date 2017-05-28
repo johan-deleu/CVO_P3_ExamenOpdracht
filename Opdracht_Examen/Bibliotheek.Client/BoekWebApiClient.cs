@@ -6,12 +6,17 @@ using System.Threading.Tasks;
 using RestSharp;
 using Bibliotheek.DataModel;
 using Bibliotheek.Service;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Web;
 
 namespace Bibliotheek.Client
 {
     class BoekWebApiClient:IBoekService
     {
         private RestClient _webApiClient = new RestClient("http://localhost:9481/");
+        private HttpClient _HttpApiClient = new HttpClient();
+        
 
         public Task<int> BewerkenBoekAsync(Boek teBewerkenBoek, Boek bewerktBoek)
         {
@@ -23,11 +28,19 @@ namespace Bibliotheek.Client
             var webApiRequest = new RestRequest("api/Boeken/"+code, Method.GET);
             //var opgehaaldBoek = await _webApiClient.GetTaskAsync<Boek>(webApiRequest);
             //return opgehaaldBoek;
-            var opgehaaldBoek = await _webApiClient.ExecuteTaskAsync<Boek>(webApiRequest);
-            return opgehaaldBoek.Data;
+            //var opgehaaldBoek = await _webApiClient.ExecuteTaskAsync<Boek>(webApiRequest);
+            //return opgehaaldBoek.Data;
 
             //Opgehaaldboek (of de data) is altijd null???
             //Geneste datastructuur lijkt probleem op te leveren
+
+            //Alternatief zonder Restsharp
+            _HttpApiClient.BaseAddress = new Uri("http://localhost:9481/");
+            var response = await _HttpApiClient.GetAsync("api/Boeken/" + code);
+            var opgehaaldBoek = await response.Content.ReadAsAsync<Boek>();
+            return opgehaaldBoek;
+            //Gaat ook fout
+            
         }
 
         public async Task<List<Boek>> OphalenBoekenAsync()

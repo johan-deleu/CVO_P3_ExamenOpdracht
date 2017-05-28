@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bibliotheek.BusinessLogic",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bibliotheek.Client", "Bibliotheek.Client\Bibliotheek.Client.csproj", "{CF6239AC-A15D-40BB-814E-7D3FD8E0EE4E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BibliotheekWebApi.Service", "BibliotheekWebApi.Service\BibliotheekWebApi.Service.csproj", "{8910E6FD-6D2F-4477-B961-8EE2238209FA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,10 @@ Global
 		{CF6239AC-A15D-40BB-814E-7D3FD8E0EE4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF6239AC-A15D-40BB-814E-7D3FD8E0EE4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF6239AC-A15D-40BB-814E-7D3FD8E0EE4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8910E6FD-6D2F-4477-B961-8EE2238209FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8910E6FD-6D2F-4477-B961-8EE2238209FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8910E6FD-6D2F-4477-B961-8EE2238209FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8910E6FD-6D2F-4477-B961-8EE2238209FA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,5 +65,6 @@ Global
 		{CE78EE9F-8E2E-49E2-815D-7C8C36873BDC} = {17377F81-43E9-4A0E-A6C0-D2B674B91F29}
 		{9BE22E79-1DD0-4E7F-A345-FE92746036AB} = {00983B7C-0189-4B83-B4B2-74FA63FD0C1A}
 		{CF6239AC-A15D-40BB-814E-7D3FD8E0EE4E} = {FDB030BA-C33B-4E4F-A6B0-AF847FF643E9}
+		{8910E6FD-6D2F-4477-B961-8EE2238209FA} = {E7E8963C-DD92-41D8-A8F5-F66C74119503}
 	EndGlobalSection
 EndGlobal

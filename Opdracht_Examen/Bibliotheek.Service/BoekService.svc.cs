@@ -29,14 +29,15 @@ namespace Bibliotheek.Service
             return await _boekLogica.OphalenBoekenAsync();
         }
 
-        public async Task<Boek> OphalenBoek(Int32 code)
+        public async Task<Boek> OphalenBoekAsync(Int32 code)
         {
-            return await _boekLogica.OphalenBoek(code);
+            //return await _boekLogica.OphalenBoekAsync(code);
+            return await _boekLogica.OphalenBoekMetGenreAsync(code);
         }
-        public async Task<Boek> OphalenBoekMetGenreAsync(Boek boek)
-        {
-            return await _boekLogica.OphalenBoekMetGenreAsync(boek);
-        }
+        //public async Task<Boek> OphalenBoekMetGenreAsync(Boek boek)
+        //{
+        //    return await _boekLogica.OphalenBoekMetGenreAsync(boek);
+        //}
 
         public async Task<Int32?> VerwijderenBoekAsync(Boek boek)
         {
@@ -48,9 +49,9 @@ namespace Bibliotheek.Service
             return await _boekLogica.ToevoegenBoekAsync(nieuwBoek);
         }
 
-        public async Task<Int32> BewerkenBoekAsync(Boek teBewerkenBoek, Boek bewerktBoek)
+        public async Task<Int32> BewerkenBoekAsync(Int32 code, Boek bewerktBoek)
         {
-            return await _boekLogica.BewerkenBoekAsync(teBewerkenBoek, bewerktBoek);
+            return await _boekLogica.BewerkenBoekAsync(code, bewerktBoek);
         }
     }
 }

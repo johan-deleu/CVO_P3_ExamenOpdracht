@@ -17,10 +17,10 @@ namespace Bibliotheek.Service
         Task<List<Boek>> OphalenBoekenAsync();
         
         [OperationContract]
-        Task<Boek> OphalenBoek(Int32 code);
+        Task<Boek> OphalenBoekAsync(Int32 code);
 
-        [OperationContract]
-        Task<Boek> OphalenBoekMetGenreAsync(Boek boek);
+        //[OperationContract]
+        //Task<Boek> OphalenBoekMetGenreAsync(Boek boek);
 
         [OperationContract]
         Task<Int32?> VerwijderenBoekAsync(Boek boek);
@@ -29,6 +29,6 @@ namespace Bibliotheek.Service
         Task<Int32> ToevoegenBoekAsync(Boek nieuwBoek);
 
         [OperationContract]
-        Task<Int32> BewerkenBoekAsync(Boek teBewerkenBoek, Boek bewerktBoek);
+        Task<Int32> BewerkenBoekAsync(Int32 code, Boek bewerktBoek);
     }
 }

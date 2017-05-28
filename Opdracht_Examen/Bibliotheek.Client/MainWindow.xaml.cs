@@ -1,17 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.ServiceModel;
 using Bibliotheek.DataModel;
 using Bibliotheek.Service;
@@ -30,19 +21,21 @@ namespace Bibliotheek.Client
         {
             InitializeComponent();
 
-            var binding = new BasicHttpBinding();
-            var boekServiceEndpointAddress = new EndpointAddress("http://localhost:54398/BoekService.svc");
-            var genreServiceEndpointAddress = new EndpointAddress("http://localhost:54398/GenreService.svc");
+            //Vul de listboxen van Genres en Boeken
+            ToonAlleGenresAsync();
+            ToonAlleBoekenAsync();
+        }
 
-            var boekChannelFactory = new ChannelFactory<IBoekService>(binding, boekServiceEndpointAddress);
-            var genreChannelFactory = new ChannelFactory<IGenreService>(binding, genreServiceEndpointAddress);
-            _boekClient = boekChannelFactory.CreateChannel();
-            _genreClient = genreChannelFactory.CreateChannel();
+        private void CreateWCFClients()
+        {            
+            _boekClient = new BoekWcfClient();
+            _genreClient = new GenreWcfClient();
+        }
 
-            //VulGenreListBox();
-            ToonAlleGenresAsync(_genreClient);
-            ToonAlleBoekenAsync(_boekClient);
-
+        private void CreateWebApiClients()
+        {
+            _boekClient = new BoekWebApiClient();
+            _genreClient = new GenreWebApiClient();
         }
         private void WisAlleVelden()
         {
@@ -53,70 +46,28 @@ namespace Bibliotheek.Client
             lstDatabase.SelectedItem = null;
         }
 
-
-        private async void ToonAlleGenresAsync(IGenreService genreClient)
+        private async void ToonAlleGenresAsync()
         {
             lstGenre.Items.Clear();
             List<Genre> lstGenresVanDb = new List<Genre>();
 
-            lstGenresVanDb = await genreClient.OphalenGenresAsync();
+            lstGenresVanDb = await _genreClient.OphalenGenresAsync();
             foreach (var genre in lstGenresVanDb)
             {
                 lstGenre.Items.Add(genre);
             }
         }
-        private async void ToonAlleBoekenAsync(IBoekService boekClient)
+        
+        private async void ToonAlleBoekenAsync()
         {
             lstDatabase.Items.Clear();
             List<Boek> lstBoekenVanDb = new List<Boek>();
 
-            lstBoekenVanDb= await boekClient.OphalenBoekenAsync();
+            lstBoekenVanDb = await _boekClient.OphalenBoekenAsync();
             foreach (var boek in lstBoekenVanDb)
             {
                 lstDatabase.Items.Add(boek);
             }
-        }
-        private async Task<Genre> OphalenGenreAsync(IGenreService genreClient, Genre genre)
-        {
-            return await genreClient.OphalenGenreAsync(genre);
-        }
-        private async Task<Int32?> ToevoegenGenreAsync(IGenreService genreClient, Genre genre)
-        {
-            return await genreClient.ToevoegenGenreAsync(genre);
-        }
-
-        private async Task<Int32?> VerwijderenGenreAsync(IGenreService genreClient, Genre genre)
-        {
-            return await genreClient.VerwijderenGenreAsync(genre);   
-        }
-
-        private async Task<List<Genre>> VerwijderenGenreLijstAsync(IGenreService genreClient, List<Genre> genreLijst)
-        {
-            return await genreClient.VerwijderenGenreLijstAsync(genreLijst);
-        }
-
-        private async Task<Int32?> WijzigenGenreAsync(IGenreService genreClient, Genre bestaandGenre, Genre bijgewerktGenre)
-        {
-            return await genreClient.WijzigenGenreAsync(bestaandGenre, bijgewerktGenre);
-        }
-
-        private async Task<Boek> OphalenBoekMetGenreAsync(IBoekService boekClient, Boek boek)
-        {
-            return await boekClient.OphalenBoekMetGenreAsync(boek);
-        }
-
-        private async Task<Int32?> ToevoegenBoekAsync(IBoekService boekClient, Boek boek)
-        {
-            return await boekClient.ToevoegenBoekAsync(boek);
-        }
-        private async Task<Int32?> VerwijderenBoekAsync(IBoekService boekClient, Boek boek)
-        {
-            return await boekClient.VerwijderenBoekAsync(boek);
-        }
-
-        private async Task<Int32?> BewerkenBoekAsync(IBoekService boekClient, Boek teBewerkenBoek, Boek bewerktBoek)
-        {
-            return await boekClient.BewerkenBoekAsync(teBewerkenBoek, bewerktBoek);
         }
         /// <summary>
         /// Voegt een boek toe aan de databank op basis van de ingevulde velden en geselecteerde genres
@@ -129,29 +80,27 @@ namespace Bibliotheek.Client
             var auteur = txtAuteur.Text;
             var paginas = 0;
 
-            ICollection<Genre> genreLijst = new List<Genre>();
-
             // Haal de lijst met geselecteerde genres uit de listbox en zet die klaar om een nieuw boek aan te maken
             // genrelijst uit database halen
+            ICollection<Genre> genreLijst = new List<Genre>();
             foreach (Genre item in lstGenre.SelectedItems)
             {
-                genreLijst.Add(await OphalenGenreAsync(_genreClient,item));
+                genreLijst.Add(await _genreClient.OphalenGenreAsync(item));
             }
 
             try
             {
                 paginas = Convert.ToInt32(txtPaginas.Text);
-                await ToevoegenBoekAsync(_boekClient,new Boek { Titel = titel, Auteur = auteur, Paginas = paginas, Genres = genreLijst });
+                await _boekClient.ToevoegenBoekAsync(new Boek { Titel = titel, Auteur = auteur, Paginas = paginas, Genres = genreLijst });
             }
             catch (FormatException)
             {
                 MessageBox.Show("Fout: ongeldig aantal pagina's", "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
-            ToonAlleGenresAsync(_genreClient);
-            ToonAlleBoekenAsync(_boekClient);
+            ToonAlleGenresAsync();
+            ToonAlleBoekenAsync();
         }
-
 
         /// <summary>
         /// Ververst de tekstvelden bij een gewijzigde selectie in de boekenlijst
@@ -162,34 +111,39 @@ namespace Bibliotheek.Client
         {
             if (lstDatabase.SelectedItem != null)
             {
-                var geselecteerdBoek = await OphalenBoekMetGenreAsync(_boekClient,(Boek)lstDatabase.SelectedItem);
+                //Steeds de gegevens terug uit de databank ophalen, ze kunnen immers gewijzigd zijn               
+                var geselecteerdBoek = await _boekClient.OphalenBoekAsync(((Boek)lstDatabase.SelectedItem).Code);
 
-                txtTitel.Text = geselecteerdBoek.Titel;
-                txtAuteur.Text = geselecteerdBoek.Auteur;
-                txtPaginas.Text = Convert.ToString(geselecteerdBoek.Paginas);
-
-                lstGenre.SelectedItems.Clear();
-                foreach (Genre lstItem in lstGenre.Items)
+                //Mogelijk is zelfs het boek intussen uit de databank
+                if(geselecteerdBoek != null)
                 {
-                    foreach (Genre boekGenre in geselecteerdBoek.Genres)
+                    txtTitel.Text = geselecteerdBoek.Titel;
+                    txtAuteur.Text = geselecteerdBoek.Auteur;
+                    txtPaginas.Text = Convert.ToString(geselecteerdBoek.Paginas);
+
+                    lstGenre.SelectedItems.Clear();
+                    foreach (Genre lstItem in lstGenre.Items)
                     {
-                        if (boekGenre.Code == lstItem.Code)
+                        foreach (Genre boekGenre in geselecteerdBoek.Genres)
                         {
-                            lstGenre.SelectedItems.Add(lstItem);
+                            if (boekGenre.Code == lstItem.Code)
+                            {
+                                lstGenre.SelectedItems.Add(lstItem);
+                            }
                         }
                     }
                 }
+                else
+                {
+                    MessageBox.Show("Fout: dit boek werd niet gevonden in de databank", "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);                   
+                }             
             }
             else
             {
                 // Velden leegmaken als er geen boek geselecteerd is
-                txtTitel.Text = "";
-                txtAuteur.Text = "";
-                txtPaginas.Text = "";
-                lstGenre.SelectedItems.Clear();
+                WisAlleVelden();
             }
         }
-
 
         /// <summary>
         /// Verwijdert een boek uit de databank
@@ -200,11 +154,10 @@ namespace Bibliotheek.Client
         {
             if (lstDatabase.SelectedItem != null)
             {
+                await _boekClient.VerwijderenBoekAsync((Boek)lstDatabase.SelectedItem);
 
-                await VerwijderenBoekAsync(_boekClient,(Boek)lstDatabase.SelectedItem);
-
-                ToonAlleGenresAsync(_genreClient);
-                ToonAlleBoekenAsync(_boekClient);
+                ToonAlleGenresAsync();
+                ToonAlleBoekenAsync();
             }
         }
 
@@ -229,21 +182,21 @@ namespace Bibliotheek.Client
             //// genrelijst uit database halen
             foreach (Genre item in lstGenre.SelectedItems)
             {
-                genreLijst.Add(await OphalenGenreAsync(_genreClient, item));
+                genreLijst.Add(await _genreClient.OphalenGenreAsync(item));
             }
 
             try
             {
                 paginas = Convert.ToInt32(txtPaginas.Text);
-                await BewerkenBoekAsync(_boekClient,teBewerkenBoek ,new Boek { Titel = titel, Auteur = auteur, Paginas = paginas, Genres = genreLijst });
+                await _boekClient.BewerkenBoekAsync(teBewerkenBoek.Code ,new Boek { Titel = titel, Auteur = auteur, Paginas = paginas, Genres = genreLijst });
             }
             catch (FormatException)
             {
                MessageBox.Show("Fout: ongeldig aantal pagina's", "Foutmelding", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
-            ToonAlleGenresAsync(_genreClient);
-            ToonAlleBoekenAsync(_boekClient);
+            ToonAlleGenresAsync();
+            ToonAlleBoekenAsync();
         }
 
 
@@ -260,10 +213,10 @@ namespace Bibliotheek.Client
 
             if (genreWindow.DialogResult == true)
             {
-                var code = await ToevoegenGenreAsync(_genreClient, new Genre(genreWindow.Genre));
+                var code = await _genreClient.ToevoegenGenreAsync(new Genre(genreWindow.Genre));
                 if (code!= null)
                 {
-                    ToonAlleGenresAsync(_genreClient);
+                    ToonAlleGenresAsync();
                 }   
             }
             //Weghalen boekselectie om geen verkeerde gegevens op het scherm te zien
@@ -285,7 +238,7 @@ namespace Bibliotheek.Client
             foreach (Genre genre in genreSelectie)
             {
                 // Selecteer alle boeken van dat genre, enkel indien er geen zijn mag het genre verwijderd worden
-                var keyVerwijderdGenre = await VerwijderenGenreAsync(_genreClient, genre);
+                var keyVerwijderdGenre = await _genreClient.VerwijderenGenreAsync(genre);
                 if (keyVerwijderdGenre == null)
                 {
                     // Dit genre kan niet verwijderd worden
@@ -301,7 +254,7 @@ namespace Bibliotheek.Client
             }
             
             //Refresh van de genreListBox
-            ToonAlleGenresAsync(_genreClient);
+            ToonAlleGenresAsync();
 
             //Weghalen boekselectie om geen verkeerde gegevens op het scherm te zien
             lstDatabase.SelectedItem = null;
@@ -325,10 +278,10 @@ namespace Bibliotheek.Client
                 if (genreWindow.DialogResult == true)
                 {
                     var bijgewerktGenre = new Genre(genreWindow.txtGenre.Text);
-                    var pkGewijzigdGenre = await WijzigenGenreAsync(_genreClient, geselecteerdGenre, bijgewerktGenre);
+                    var pkGewijzigdGenre = await _genreClient.WijzigenGenreAsync(geselecteerdGenre, bijgewerktGenre);
                     if (pkGewijzigdGenre != null)
                     {
-                        ToonAlleGenresAsync(_genreClient);
+                        ToonAlleGenresAsync();
                         //Weghalen boekselectie om geen verkeerde gegevens op het scherm te zien
                         lstDatabase.SelectedItem = null;
                     }
@@ -340,20 +293,22 @@ namespace Bibliotheek.Client
             }
         }
 
-        private void rbtnFram_Checked(object sender, RoutedEventArgs e)
+        private void rbtnService_Checked(object sender, RoutedEventArgs e)
         {
-            ////Bedoeling is bij het wisselen van framewerk technologie hier een 'DbAccess' object van de juiste technologie aan te maken
-            ////Alle methodes in de 2 klassen kunnen dan dezelfde namen hebben en bij het oproepen moet er geen check van de radiobuttons meer gebeuren
+            //Bedoeling is bij het wisselen van framewerk technologie hier een Client object van de juiste technologie aan te maken:
+            //- WCF
+            //- Web API
+            //Alle methodes in de 2 klassen kunnen dan dezelfde namen hebben en bij het oproepen moet er geen check van de radiobuttons meer gebeuren
 
 
-            //if (rbtnEntFram.IsChecked == true)
-            //{
-            //    dbAccess = new DbAccessEF();
-            //}
-            //else
-            //{
-            //    dbAccess = new DbAccessADO();
-            //}
-        }
+            if (rbtnWCF.IsChecked == true)
+            {
+                CreateWCFClients();
+            }
+            else
+            {
+                CreateWebApiClients();
+            }
+        }       
     }
 }

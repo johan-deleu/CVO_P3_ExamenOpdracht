@@ -36,10 +36,10 @@ namespace Bibliotheek.DataAccess
             return await Boeken.Include(x => x.Genres).ToListAsync();
         }
 
-        public async Task<Boek> OphalenBoekMetGenre_async(Boek boek)
+        public async Task<Boek> OphalenBoekMetGenre_async(Int32 code)
         {
-            var opgehaaldBoek= await Boeken.Include(x => x.Genres).SingleOrDefaultAsync(x => x.Code == boek.Code);
-            //oneindig recursief onderbreken boeken van onderliggende genres op null te zetten.
+            var opgehaaldBoek= await Boeken.Include(x => x.Genres).SingleOrDefaultAsync(x => x.Code == code);
+            //oneindig recursief onderbreken: boeken van onderliggende genres op null te zetten.
             foreach (Genre genre in opgehaaldBoek.Genres)
             {
                 genre.Boeken = null;
@@ -85,10 +85,10 @@ namespace Bibliotheek.DataAccess
             return (toegevoegdBoek.Code);
         }
 
-        public async Task<Int32?> VerwijderenBoek_async(Boek boek)
+        public async Task<Int32?> VerwijderenBoek_async(Int32 code)
         {
             //Verwijder één specifiek boek uit de database
-            var teVerwijderenBoek = await Boeken.SingleOrDefaultAsync(x => x.Code == boek.Code);
+            var teVerwijderenBoek = await Boeken.SingleOrDefaultAsync(x => x.Code == code);
             if (teVerwijderenBoek != null)
             {
                 Boeken.Remove(teVerwijderenBoek);
@@ -115,7 +115,12 @@ namespace Bibliotheek.DataAccess
 
         public async Task<Int32?> WijzigenGenre_async(Genre bestaandGenre, Genre bijgewerktGenre)
         {
-            var teWijzigenGenre = Genres.SingleOrDefault(x => x.Code == bestaandGenre.Code);
+            return await WijzigenGenre_async(bestaandGenre.Code,bijgewerktGenre);
+        }
+
+        public async Task<Int32?> WijzigenGenre_async(Int32 code, Genre bijgewerktGenre)
+        {
+            var teWijzigenGenre = Genres.SingleOrDefault(x => x.Code == code);
             teWijzigenGenre.Omschrijving = bijgewerktGenre.Omschrijving;
             await SaveChangesAsync();
             return teWijzigenGenre.Code;

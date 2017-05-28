@@ -29,10 +29,19 @@ namespace Bibliotheek.BusinessLogic
             return await dbAccess.OphalenGenre_async(genre.Code);
         }
 
+        public async Task<Genre> OphalenGenreAsync(Int32 code)
+        {
+            return await dbAccess.OphalenGenre_async(code);
+        }
+
         public async Task<Int32?> WijzigenGenreAsync(Genre bestaandGenre, Genre bijgewerktGenre)
         {
             return await dbAccess.WijzigenGenre_async(bestaandGenre, bijgewerktGenre);
+        }
 
+        public async Task<Int32?> WijzigenGenreAsync(Int32 code, Genre bijgewerktGenre)
+        {
+            return await dbAccess.WijzigenGenre_async(code, bijgewerktGenre);
         }
         public async Task<Int32?> VerwijderenGenreAsync(Int32 code)
         {
@@ -55,20 +64,7 @@ namespace Bibliotheek.BusinessLogic
 
         public async Task<Int32?> VerwijderenGenreAsync(Genre genre)
         {
-            //Eerst nakijken of er nog boeken naar dit Genre verwijzen          
-            //var opgehaaldGenre = await dbAccess.OphalenGenre_async(genre.Code);
-            var boekenVanGenre = await dbAccess.OphalenBoeken_async(genre);
-
-            if (boekenVanGenre.Count() == 0)
-            {
-                //Er zijn geen boeken meer van dit Genre, het genre mag gewoon verwijderd worden
-                await dbAccess.VerwijderenGenre_async(genre.Code);
-                return genre.Code;
-            }
-            else
-            {
-                return null;
-            }    
+            return await VerwijderenGenreAsync(genre.Code);
         }
 
         public async Task<List<Genre>> VerwijderenGenreLijstAsync(List<Genre> genreLijst)

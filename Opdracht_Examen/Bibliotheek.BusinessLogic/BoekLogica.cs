@@ -15,15 +15,23 @@ namespace Bibliotheek.BusinessLogic
         {
             return await dbAccess.OphalenBoeken_async();
         }
-
-        public async Task<Boek> OphalenBoek(Int32 code)
+        public async Task<List<Boek>> OphalenBoekenMetGenreAsync()
+        {
+            return await dbAccess.OphalenBoekenMetGenre_async();
+        }
+        public async Task<Boek> OphalenBoekAsync(Int32 code)
         {
             return await dbAccess.OphalenBoek_async(code);
         }
 
         public async Task<Boek> OphalenBoekMetGenreAsync(Boek boek)
         {
-            return await dbAccess.OphalenBoekMetGenre_async(boek);
+            return await dbAccess.OphalenBoekMetGenre_async(boek.Code);
+        }
+
+        public async Task<Boek> OphalenBoekMetGenreAsync(Int32 code)
+        {
+            return await dbAccess.OphalenBoekMetGenre_async(code);
         }
 
         public async Task<List<Boek>> OphalenBoekenAsync(Genre genre)
@@ -33,8 +41,12 @@ namespace Bibliotheek.BusinessLogic
 
         public async Task<Int32?> VerwijderenBoekAsync(Boek boek)
         {
-            return await dbAccess.VerwijderenBoek_async(boek);
+            return await dbAccess.VerwijderenBoek_async(boek.Code);
+        }
 
+        public async Task<Int32?> VerwijderenBoekAsync(Int32 code)
+        {
+            return await dbAccess.VerwijderenBoek_async(code);
         }
 
         public async Task<Int32> ToevoegenBoekAsync(Boek nieuwBoek)
@@ -57,10 +69,13 @@ namespace Bibliotheek.BusinessLogic
             return await dbAccess.ToevoegenBoek_async(toeTeVoegenBoek);
         }
 
-        public async Task<Int32> BewerkenBoekAsync(Boek teBewerkenBoek, Boek bewerktBoek)
+        public async Task<Int32> BewerkenBoekAsync(Int32 code, Boek bewerktBoek)
         {
-            await VerwijderenBoekAsync(teBewerkenBoek);
+            //Snelle implementatie
+            await VerwijderenBoekAsync(code);
             return await ToevoegenBoekAsync(bewerktBoek);
+
+            //betere implementatie door het boek effectief te wijzigen en de PK te behouden
         }
     }
 }

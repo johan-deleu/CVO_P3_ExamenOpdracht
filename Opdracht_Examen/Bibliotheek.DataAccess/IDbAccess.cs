@@ -35,6 +35,14 @@ namespace Bibliotheek.DataAccess
         Task<List<Boek>> OphalenBoeken_async();
 
         /// <summary>
+        /// Haalt alle boeken op uit de database
+        /// </summary>
+        /// <returns>
+        /// List die de boeken bevat 
+        /// </returns>
+        Task<List<Boek>> OphalenBoekenMetGenre_async();
+
+        /// <summary>
         /// Haalt alle boeken van een specifiek genre op uit de database 
         /// </summary>
         /// <returns>
@@ -50,7 +58,7 @@ namespace Bibliotheek.DataAccess
         /// </returns>
         Task<Boek> OphalenBoek_async(Int32 code);
 
-        Task<Boek> OphalenBoekMetGenre_async(Boek boek);
+        Task<Boek> OphalenBoekMetGenre_async(Int32 code);
 
         /// <summary>
         /// Voegt een boek toe aan de database
@@ -65,7 +73,7 @@ namespace Bibliotheek.DataAccess
         /// Verwijdert één boek uit de database op basis van de primary key
         /// </summary>
         /// <returns> </returns>
-        Task<Int32?> VerwijderenBoek_async(Boek boek);
+        Task<Int32?> VerwijderenBoek_async(Int32 code);
 
         /// <summary>
         /// Voegt een genre toe aan de database
@@ -84,5 +92,11 @@ namespace Bibliotheek.DataAccess
         /// </summary>
         /// <returns> </returns>
         Task<Int32?> WijzigenGenre_async(Genre bestaandGenre,  Genre bijgewerktGenre);
+
+        /// <summary>
+        /// Wijzigt de omschrijving van één genre uit de database op basis van de nieuwe gegevens van het genre
+        /// </summary>
+        /// <returns> </returns>
+        Task<Int32?> WijzigenGenre_async(Int32 code, Genre bijgewerktGenre);
     }
 }
